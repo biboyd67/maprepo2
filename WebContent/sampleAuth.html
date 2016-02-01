@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script>
+      function auth() {
+        var config = {
+          'client_id': '630420208849-jfmabdjfemktm78268gqa7h54edlcgeq.apps.googleusercontent.com',
+          'scope': 'https://www.googleapis.com/auth/fusiontables'
+        };
+        gapi.auth.authorize(config, function(authResult) {
+          console.log('login complete');
+          //console.log(gapi.auth.getToken());
+          //console.log(authResult);
+          
+          var restRequest = gapi.client.request({
+        	  path: '/fusiontables/v1/query',
+              body: 'sql=' + encodeURIComponent('UPDATE 1GJ2P6tXuUquucisemkyp6cw_LecKve3tIWH1_SAH SET Visitors=2 WHERE ROWID=\'2\''),
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              method: 'POST'
+         	 });
+          
+          	restRequest.execute(function(resp) {
+              var output = JSON.stringify(resp);
+              console.log(output);
+              console.log(resp.rows.length);
+            });
+          });
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="auth();">Authorize</button>
+  </body>
+</html>

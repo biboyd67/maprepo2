@@ -1,0 +1,8 @@
+applications:
+- path: JavaHelloWorldApp.war
+  memory: 512M
+  instances: 1
+  domain: au-syd.mybluemix.net
+  name: map-app
+  host: map-app
+  disk_quota: 1024M
